@@ -1,0 +1,19 @@
+type Rental @entity {
+  id: ID!
+  borrower: Bytes!
+  duration: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Listing @entity {
+  id: ID!
+  price: BigInt!
+  name: String!
+  lender: Bytes!
+  active: Boolean!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

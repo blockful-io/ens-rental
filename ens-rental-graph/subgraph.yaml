@@ -1,0 +1,30 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: ENSRent
+    network: sepolia
+    source:
+      address: "0xbb053293241f0880844c00f519989b4f38cc2142"
+      abi: ENSRent
+      startBlock: 7091523
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - NameRegistered
+      abis:
+        - name: ENSRent
+          file: ./abis/ENSRent.json
+      eventHandlers:
+        - event: DomainListed(string,indexed uint256,indexed address,uint256,uint256,bytes32)
+          handler: handleDomainListed
+        - event: DomainReclaimed(indexed uint256,indexed address)
+          handler: handleDomainReclaimed
+        - event: DomainRented(indexed uint256,indexed address,uint256,uint256,uint256)
+          handler: handleDomainRented
+      file: ./src/ens-rent.ts
